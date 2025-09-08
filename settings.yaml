@@ -6,16 +6,16 @@
 
 models:
   default_chat_model:
-    type: deepseek-chat # or azure_openai_chat
-    # api_base: https://<instance>.openai.azure.com
+    type: openai_chat # or azure_openai_chat
+    api_base: https://api.deepseek.com
     # api_version: 2024-05-01-preview
-    auth_type: sk-5993feee0e9f40afb994c2a365663373 # or azure_managed_identity
+    auth_type: api_key # or azure_managed_identity
     api_key: ${GRAPHRAG_API_KEY} # set this in the generated .env file
     # audience: "https://cognitiveservices.azure.com/.default"
     # organization: <organization_id>
     model: deepseek-chat
     # deployment_name: <azure_model_deployment_name>
-    # encoding_model: cl100k_base # automatically set by tiktoken if left undefined
+    encoding_model: cl100k_base # automatically set by tiktoken if left undefined
     model_supports_json: true # recommended if this is available for your model.
     concurrent_requests: 25 # max number of simultaneous LLM requests allowed
     async_mode: threaded # or asyncio
@@ -24,16 +24,16 @@ models:
     tokens_per_minute: auto              # set to null to disable rate limiting
     requests_per_minute: auto            # set to null to disable rate limiting
   default_embedding_model:
-    type: https://open.bigmodel.cn/api/paas/v4/embeddings # or azure_openai_embedding
-    # api_base: https://<instance>.openai.azure.com
+    type: openai_embedding # or azure_openai_embedding
+    api_base: https://open.bigmodel.cn/api/paas/v4
     # api_version: 2024-05-01-preview
     auth_type: api_key # or azure_managed_identity
-    api_key: ${GRAPHRAG_API_KEY}
+    api_key: 569d1fc0e3734ddea956bb63fe9fef75.ASLL7ikeolDpsZkT
     # audience: "https://cognitiveservices.azure.com/.default"
     # organization: <organization_id>
-    model: text-embedding-3-small
+    model: embedding-3
     # deployment_name: <azure_model_deployment_name>
-    # encoding_model: cl100k_base # automatically set by tiktoken if left undefined
+    encoding_model: cl100k_base # automatically set by tiktoken if left undefined
     model_supports_json: true # recommended if this is available for your model.
     concurrent_requests: 25 # max number of simultaneous LLM requests allowed
     async_mode: threaded # or asyncio

@@ -51,6 +51,7 @@ def index_cli(
     output_dir: Path | None,
 ):
     """Run the pipeline with the given config."""
+    print('Run the pipeline with the given config.')
     cli_overrides = {}
     if output_dir:
         cli_overrides["output.base_dir"] = str(output_dir)
