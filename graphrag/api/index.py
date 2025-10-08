@@ -55,7 +55,7 @@ async def build_index(
         The list of pipeline run results
     """
     init_loggers(config=config, verbose=verbose)
-
+    logger.info("config is {}, method is {}, is_update_run is {}, callbacks is {}".format(config, method, is_update_run, callbacks))
     # Create callbacks for pipeline lifecycle events if provided
     workflow_callbacks = (
         create_callback_chain(callbacks) if callbacks else NoopWorkflowCallbacks()
@@ -67,6 +67,7 @@ async def build_index(
         logger.warning("New pipeline does not yet support memory profiling.")
 
     logger.info("Initializing indexing pipeline...")
+
     # todo: this could propagate out to the cli for better clarity, but will be a breaking api change
     method = _get_method(method, is_update_run)
     pipeline = PipelineFactory.create_pipeline(config, method)
