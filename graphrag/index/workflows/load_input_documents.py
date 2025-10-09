@@ -23,6 +23,7 @@ async def run_workflow(
     context: PipelineRunContext,
 ) -> WorkflowFunctionOutput:
     """Load and parse input documents into a standard format."""
+    logger.info("Loading input documents..., config: %s", config)
     output = await load_input_documents(
         config.input,
         context.input_storage,

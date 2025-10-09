@@ -34,8 +34,10 @@ async def load_files(
         raise ValueError(msg)
 
     files_loaded = []
+    logger.info(f"Loading {len(files)} files from {config.storage.base_dir}")
 
     for file, group in files:
+        logger.info(f"Processing {file}")
         try:
             files_loaded.append(await loader(file, group))
         except Exception as e:  # noqa: BLE001 (catching Exception is fine here)
