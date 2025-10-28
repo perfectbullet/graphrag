@@ -146,7 +146,7 @@ def _index_cli(
         help="The indexing method to use.",
     ),
     verbose: bool = typer.Option(
-        False,
+        True,
         "--verbose",
         "-v",
         help="Run the indexing pipeline with verbose logging",
