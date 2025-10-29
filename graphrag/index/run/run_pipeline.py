@@ -37,7 +37,7 @@ async def run_pipeline(
     input_storage = create_storage_from_config(config.input.storage)
     output_storage = create_storage_from_config(config.output)
     cache = create_cache_from_config(config.cache, root_dir)
-
+    logger.info("input_storage {}, output_storage: {}, cache: {}".format(input_storage, output_storage, cache))
     # load existing state in case any workflows are stateful
     state_json = await output_storage.get("context.json")
     state = json.loads(state_json) if state_json else {}
@@ -79,7 +79,7 @@ async def run_pipeline(
             callbacks=callbacks,
             state=state,
         )
-
+        logger.info("Running standard indexing context is {}".format(context))
     async for table in _run_pipeline(
         pipeline=pipeline,
         config=config,
@@ -102,6 +102,7 @@ async def _run_pipeline(
 
         logger.info("Executing pipeline...")
         for name, workflow_function in pipeline.run():
+            logger.info('workflow_function is {}, name is {}'.format(workflow_function, name))
             last_workflow = name
             context.callbacks.workflow_start(name, None)
             work_time = time.time()
